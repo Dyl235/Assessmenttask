@@ -15,6 +15,7 @@ import { Signup } from './pages/Signup';
 import { Signin } from './pages/Signin';
 import { SignOut } from './pages/Signout';
 import { Detail } from './pages/Detail'
+import { test } from './pages/test';
 // components
 import { Header } from './components/Header';
 import { Routes, Route } from 'react-router-dom';
@@ -34,7 +35,8 @@ const NavRoutes = [
   { name: "About", goto: "/about" },
   { name: "Contact", goto: "/contact" },
   { name: "Sign in", goto: "/signin" },
-  { name: "Sign up", goto: "/signup" }
+  { name: "Sign up", goto: "/signup" },
+  { name: "Test", goto: "/Test" },
 ]
 
 const AuthNavRoutes = [
@@ -42,7 +44,8 @@ const AuthNavRoutes = [
   { name: "About", goto: "/about" },
   { name: "Contact", goto: "/contact" },
   { name: "Profile", goto: "/profile" },
-  { name: "Sign out", goto: "/signout" }
+  { name: "Sign out", goto: "/signout" },
+  { name: "Test", goto: "/Test" },
 ]
 
 function App() {
@@ -77,6 +80,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/signout" element={ <SignOut/> } />
           <Route path="/detail/:bookId" element={ <Detail/> } />
+          <Route path="/detail/:bookId" element={ <Test/> } />
         </Routes>
       </FBStorageContext.Provider>
       </FBDbContext.Provider>
