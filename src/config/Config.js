@@ -5,5 +5,4 @@ export const firebaseConfig = {
   storageBucket: "assessment2-e4df2.appspot.com",
   messagingSenderId: "226419571419",
   appId: "1:226419571419:web:588721ef71117a46c12afe"
-  };
-  
+};
