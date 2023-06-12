@@ -49,7 +49,7 @@ export function Detail(props) {
     setBookReviews( reviews )
   }
 
-  const bookRef = doc(FBDb, "books", bookId)
+  const bookRef = doc(FBDb, "Movies", bookId)
 
   const getBook = async () => {
     let book = await getDoc(bookRef)

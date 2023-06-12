@@ -20,17 +20,17 @@ export function Home () {
 
     const getData = async () => {
         // get data from firestore collection called "Movies"
-        const querySnapshot = await getDocs( collection(FBDb, "Movies") )
+        const querySnapshot = await getDocs( collection(FBDb, "movies") )
         // an array to store all the books from firestore
-        let Movies = []
+        let movies = []
         querySnapshot.forEach( (doc) => {
-            let book = doc.data()
-            book.id = doc.id
+            let movies = doc.data()
+            movies.id = doc.id
             // add the book to the array
-            Movies.push(book)
+            movies.push(movies)
         })
         // set the books array as the data state
-        setData(Movies)
+        setData(movies)
     }
 
     useEffect( () => {
@@ -49,15 +49,15 @@ export function Home () {
         )
     }
 
-    const Columns = data.map( (book, key) => {
+    const Columns = data.map( (movies, key) => {
         return(
             <Col md="3" key={key} className="my-3">
-                <Card className="book-card">
-                    <Image path={book.image} />
+                <Card className="movies-card">
+                    <Image path={movies.image} />
                     <Card.Body>
-                        <Card.Title>{book.title}</Card.Title>
+                        <Card.Title>{movies.title}</Card.Title>
                     </Card.Body>
-                    <a href={"/detail/"+book.id} className="card-link"></a>
+                    <a href={"/detail/"+movies.id} className="card-link"></a>
                 </Card>
             </Col>
         )
