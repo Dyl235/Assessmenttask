@@ -49,15 +49,15 @@ export function Home () {
         )
     }
 
-    const Columns = data.map( (Movies, key) => {
+    const Columns = data.map( (movie, key) => {
         return(
             <Col md="3" key={key} className="my-3">
-                <Card className="Movies-card">
-                    <Image path={Movies.image} />
+                <Card className="movie-card">
+                    <Image path={movie.image} />
                     <Card.Body>
-                        <Card.Title>{Movies.title}</Card.Title>
+                        <Card.Title>{movie.title}</Card.Title>
                     </Card.Body>
-                    <a href={"/detail/"+Movies.id} className="card-link"></a>
+                    <a href={"/detail/"+movie.id} className="card-link"></a>
                 </Card>
             </Col>
         )
