@@ -38,7 +38,7 @@ export function Detail(props) {
   })
 
   const getReviews = async () => {
-    const path = `Movies/${bookId}/reviews`
+    const path = `books/${bookId}/reviews`
     const querySnapshot = await getDocs( collection(FBDb, path) )
     let reviews = []
     querySnapshot.forEach( (item) => {
@@ -49,7 +49,7 @@ export function Detail(props) {
     setBookReviews( reviews )
   }
 
-  const bookRef = doc(FBDb, "Movies", bookId)
+  const bookRef = doc(FBDb, "books", bookId)
 
   const getBook = async () => {
     let book = await getDoc(bookRef)
@@ -71,7 +71,7 @@ export function Detail(props) {
   // function to handle review submission
   const ReviewHandler = async ( reviewData ) => {
     // create a document inside firestore
-    const path = `Movies/${bookId}/reviews`
+    const path = `books/${bookId}/reviews`
     const review = await addDoc( collection(FBDb, path), reviewData )
   }
 
