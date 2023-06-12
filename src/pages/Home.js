@@ -19,18 +19,18 @@ export function Home () {
     const FBStorage = useContext( FBStorageContext )
 
     const getData = async () => {
-        // get data from firestore collection called "books"
-        const querySnapshot = await getDocs( collection(FBDb, "books") )
+        // get data from firestore collection called "Movies"
+        const querySnapshot = await getDocs( collection(FBDb, "Movies") )
         // an array to store all the books from firestore
-        let books = []
+        let Movies = []
         querySnapshot.forEach( (doc) => {
             let book = doc.data()
             book.id = doc.id
             // add the book to the array
-            books.push(book)
+            Movies.push(book)
         })
         // set the books array as the data state
-        setData(books)
+        setData(Movies)
     }
 
     useEffect( () => {
