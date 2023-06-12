@@ -41,7 +41,7 @@ export function Home () {
 
     const Image = ( props ) => {
         const [imgPath,setImgPath] = useState()
-        const imgRef = ref( FBStorage, `film_cover/${ props.path }`)
+        const imgRef = ref( FBStorage, `movies/${ props.path }`)
         getDownloadURL( imgRef ).then( (url) => setImgPath(url) )
 
         return(
