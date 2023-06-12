@@ -7,7 +7,7 @@ export function Header( props ) {
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand>
-          Dylan's Assessment Task
+          Dylan's Movie Fan Club Website Assessment Task.
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="main-nav" />
         <Navbar.Collapse id="main-nav">
