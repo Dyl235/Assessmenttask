@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 import { ReviewForm } from '../components/ReviewForm';
 
 import { useParams } from 'react-router-dom'
@@ -18,7 +19,7 @@ import { onAuthStateChanged } from "firebase/auth";
 export function Detail(props) {
   const [bookData, setBookData] = useState()
   const [auth, setAuth] = useState()
-  const [bookReviews, setBookReviews ] = useState([])
+  const [bookReviews, setBookReviews] = useState([])
 
   let { bookId } = useParams()
 
@@ -26,8 +27,8 @@ export function Detail(props) {
   const FBStorage = useContext(FBStorageContext)
   const FBAuth = useContext(FBAuthContext)
 
-  onAuthStateChanged( FBAuth, (user) => {
-    if( user ) {
+  onAuthStateChanged(FBAuth, (user) => {
+    if (user) {
       // user is signed in
       setAuth(user)
     }
@@ -39,15 +40,34 @@ export function Detail(props) {
 
   const getReviews = async () => {
     const path = `books/${bookId}/reviews`
-    const querySnapshot = await getDocs( collection(FBDb, path) )
+    const querySnapshot = await getDocs(collection(FBDb, path))
     let reviews = []
-    querySnapshot.forEach( (item) => {
+    querySnapshot.forEach((item) => {
       let review = item.data()
       review.id = item.id
-      reviews.push( review )
+      reviews.push(review)
     })
-    setBookReviews( reviews )
+    setBookReviews(reviews)
   }
+
+  // reviews  collection
+  const ReviewCollection = bookReviews.map((item) => {
+    return (
+      <Col md="3">
+        <Card>
+          <Card.Body>
+            <Card.Title>
+              <h5>{item.title}</h5>
+            </Card.Title>
+            <Card.Text>
+              <p>{item.content}</p>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </Col>
+    )
+  })
+
 
   const bookRef = doc(FBDb, "books", bookId)
 
@@ -69,19 +89,19 @@ export function Detail(props) {
   })
 
   // function to handle review submission
-  const ReviewHandler = async ( reviewData ) => {
+  const ReviewHandler = async (reviewData) => {
     // create a document inside firestore
     const path = `books/${bookId}/reviews`
-    const review = await addDoc( collection(FBDb, path), reviewData )
+    const review = await addDoc(collection(FBDb, path), reviewData)
   }
 
-  const Image = ( props ) => {
-    const [imgPath,setImgPath] = useState()
-    const imgRef = ref( FBStorage, `book_cover/${ props.path }`)
-    getDownloadURL( imgRef ).then( (url) => setImgPath(url) )
+  const Image = (props) => {
+    const [imgPath, setImgPath] = useState()
+    const imgRef = ref(FBStorage, `book_cover/${props.path}`)
+    getDownloadURL(imgRef).then((url) => setImgPath(url))
 
-    return(
-        <img src={imgPath} className="img-fluid" />
+    return (
+      <img src={imgPath} className="img-fluid" />
     )
   }
 
@@ -98,7 +118,7 @@ export function Detail(props) {
             <h4>{bookData.author} </h4>
             <h5>{bookData.year}</h5>
             <p>{bookData.summary}</p>
-            <p>ISBN {bookData.isbn10} <br/> ISBN13 {bookData.isbn13}</p>
+            <p>ISBN {bookData.isbn10} <br /> ISBN13 {bookData.isbn13}</p>
             <p>{bookData.pages} pages</p>
           </Col>
         </Row>
@@ -109,6 +129,7 @@ export function Detail(props) {
         </Row>
         <Row>
           {/* reviews to appear here */}
+          {ReviewCollection}
         </Row>
       </Container>
     )

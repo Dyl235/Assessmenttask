@@ -1,8 +1,8 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyDu-SSnxfKczn9euc9C0qmw2GDsiZIYSSM",
-  authDomain: "movie-assessment-2b308.firebaseapp.com",
-  projectId: "movie-assessment-2b308",
-  storageBucket: "movie-assessment-2b308.appspot.com",
-  messagingSenderId: "160340271656",
-  appId: "1:160340271656:web:93023e5d57ca148fb7cb1d"
+  apiKey: "AIzaSyDb_hjZ2CztCoEF9gb-AFwNX_ux6Bk5-XE",
+  authDomain: "assessment-e12af.firebaseapp.com",
+  projectId: "assessment-e12af",
+  storageBucket: "assessment-e12af.appspot.com",
+  messagingSenderId: "629475444405",
+  appId: "1:629475444405:web:d4a22b0767733c2e6320fc"
 };
