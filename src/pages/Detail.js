@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+
 import { ReviewForm } from '../components/ReviewForm';
 
 import { useParams } from 'react-router-dom'
@@ -50,7 +51,7 @@ export function Detail(props) {
     setBookReviews(reviews)
   }
 
-  // reviews  collection
+  // reviews collection
   const ReviewCollection = bookReviews.map((item) => {
     return (
       <Col md="3">
@@ -67,7 +68,6 @@ export function Detail(props) {
       </Col>
     )
   })
-
 
   const bookRef = doc(FBDb, "books", bookId)
 
@@ -123,7 +123,7 @@ export function Detail(props) {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col md="4">
             <ReviewForm user={auth} handler={ReviewHandler} />
           </Col>
         </Row>
