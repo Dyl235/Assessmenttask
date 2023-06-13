@@ -62,6 +62,7 @@ export function Detail(props) {
             </Card.Title>
             <Card.Text>
               <p>{item.content}</p>
+              <p>{item.stars} stars</p>
             </Card.Text>
           </Card.Body>
         </Card>
@@ -93,6 +94,8 @@ export function Detail(props) {
     // create a document inside firestore
     const path = `books/${bookId}/reviews`
     const review = await addDoc(collection(FBDb, path), reviewData)
+    // when the user submits a new review, refresh the reviews
+    getReviews()
   }
 
   const Image = (props) => {
@@ -109,7 +112,7 @@ export function Detail(props) {
   if (bookData) {
     return (
       <Container>
-        <Row className='my-3'>
+        <Row className="my-3">
           <Col md="4">
             <Image path={bookData.image} />
           </Col>
@@ -122,8 +125,8 @@ export function Detail(props) {
             <p>{bookData.pages} pages</p>
           </Col>
         </Row>
-        <Row>
-          <Col md="4">
+        <Row className="my-3">
+          <Col md="6">
             <ReviewForm user={auth} handler={ReviewHandler} />
           </Col>
         </Row>
